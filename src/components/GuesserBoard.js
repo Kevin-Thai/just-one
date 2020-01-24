@@ -54,7 +54,7 @@ class GuesserBoard extends React.Component {
     const guessForm = (
       <div>
         <h4>Your clues are:</h4>
-        <ul>
+        {/* <ul>
           {Object.keys(this.props.G.clues).map((clue, i) =>
             this.props.G.clues[clue] >= 0 ? (
               <li key={i} className="emphasis">
@@ -64,7 +64,7 @@ class GuesserBoard extends React.Component {
               ''
             )
           )}
-        </ul>
+        </ul> */}
         <input type="text" name="guess" value={this.state.guess} onChange={this.handleChange} />
         <button
           onClick={() => this.setGuess()}
@@ -78,7 +78,11 @@ class GuesserBoard extends React.Component {
     )
     const setWordBtn = (
       <div>
-        <button onClick={() => this.setWord()}>Set the random word!</button>
+        <button onClick={() => this.setWord()}>
+          <span role="img" aria-label="dice">
+            🎲
+          </span>
+        </button>
       </div>
     )
     return (

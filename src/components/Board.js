@@ -19,20 +19,20 @@ class Board extends React.Component {
     return (
       <div className="board">
         <div className="left">
-          <h4>
-            Your team's score: <span className="emphasis">{this.props.G.score}/13</span>
-          </h4>
+          {/* <h4>
+            Your team's score: <span ></span>
+          </h4> */}
           {this.props.playerID === this.props.ctx.currentPlayer ? (
             <GuesserBoard {...this.props} />
           ) : (
             <ClueBoard {...this.props} />
           )}
         </div>
-        <div className="right">
+        {/* <div className="right">
           <table>
             <thead>
               <tr>
-                <th>WORDS</th>
+                <th className="emphasis">{this.props.G.score}/13</th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@ class Board extends React.Component {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     )
   }
