@@ -46,3 +46,27 @@
   font-weight: bold;
   font-size: 1.5em;
 }
+
+.hidden {
+  color: rgb(168, 168, 168);
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.incorrect {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.deleted {
+  background-color: black;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import ValidationForm from './ValidationForm'
 
 class ClueBoard extends React.Component {
   static propTypes = {
@@ -19,8 +20,6 @@ class ClueBoard extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClueSubmit = this.handleClueSubmit.bind(this)
-    this.handleValidate = this.handleValidate.bind(this)
-    this.handleVoteChange = this.handleVoteChange.bind(this)
   }
 
   handleChange(evt) {
@@ -32,21 +31,6 @@ class ClueBoard extends React.Component {
   handleClueSubmit() {
     this.props.moves.submitClue(this.state.clue)
     this.setState({ clue: '' })
-  }
-
-  handleVoteChange(clue, val) {
-    this.setState(prevState => ({
-      votes: { ...prevState.votes, [clue]: val },
-    }))
-  }
-
-  handleValidate(evt) {
-    evt.preventDefault()
-    this.props.moves.validateClue(this.state.votes)
-    this.setState({ votes: {} })
-    // Object.keys(this.props.G.clues).forEach(clue => {
-    //   this.props.G.clues[clue] += this.state.votes[clue]
-    // })
   }
 
   // handleSwitch(stage) {
@@ -94,56 +78,6 @@ class ClueBoard extends React.Component {
       </div>
     )
 
-    const validateForm = (
-      <div>
-        {this.props.isActive ? (
-          <form onSubmit={this.handleValidate}>
-            {Object.keys(this.props.G.clues).map((clue, i) => (
-              <div key={i}>
-                {this.props.G.clues[clue] > -50 ? (
-                  <label>
-                    Approve
-                    <input
-                      type="radio"
-                      value={1}
-                      name={clue}
-                      checked={this.state.votes[clue] === 1}
-                      onChange={() => this.handleVoteChange(clue, 1)}
-                    />
-                  </label>
-                ) : (
-                  <span>(DUPLICATE SUBMISSION)</span>
-                )}
-                <label key={i}>
-                  Reject
-                  <input
-                    type="radio"
-                    value={-1}
-                    name={clue}
-                    checked={this.state.votes[clue] === -1}
-                    onChange={() => this.handleVoteChange(clue, -1)}
-                  />
-                </label>
-                <span className="emphasis"> {clue}</span>
-                {/* <span className="warning">
-                  {this.props.G.clues[clue] < 0 ? ' (DUPLICATE SUBMISSION)' : ''}
-                </span> */}
-              </div>
-            ))}
-            <button
-              type="submit"
-              disabled={
-                Object.keys(this.props.G.clues).length !== Object.keys(this.state.votes).length
-              }>
-              Finalize Votes
-            </button>
-          </form>
-        ) : (
-          ''
-        )}
-      </div>
-    )
-
     return (
       <div>
         <h2>{stage ? this.props.G.stage[stage] : 'Waiting...'}</h2>
@@ -157,7 +91,15 @@ class ClueBoard extends React.Component {
           )}
         </div>
         {stage === 'clue' ? clueForm : ''}
-        {stage === 'validate' ? validateForm : ''}
+        {stage === 'validate' ? (
+          <ValidationForm
+            {...this.props}
+            handleValidate={() => this.handleValidate()}
+            handleVoteChange={(clue, val) => this.handleVoteChange(clue, val)}
+          />
+        ) : (
+          ''
+        )}
       </div>
     )
   }

@@ -18,7 +18,7 @@ const JustOne = {
     score: 0,
     words: randomWords(dictionary),
     currentWord: null,
-    guess: null,
+    guesses: {},
     clues: {},
   }),
 

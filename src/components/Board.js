@@ -18,11 +18,32 @@ class Board extends React.Component {
 
     return (
       <div className="board">
-        {this.props.playerID === this.props.ctx.currentPlayer ? (
-          <GuesserBoard {...this.props} />
-        ) : (
-          <ClueBoard {...this.props} />
-        )}
+        <div className="left">
+          <h4>
+            Your team's score: <span className="emphasis">{this.props.G.score}/13</span>
+          </h4>
+          {this.props.playerID === this.props.ctx.currentPlayer ? (
+            <GuesserBoard {...this.props} />
+          ) : (
+            <ClueBoard {...this.props} />
+          )}
+        </div>
+        <div className="right">
+          <table>
+            <thead>
+              <tr>
+                <th>WORDS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.G.words.map((word, i) => (
+                <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
+                  <td>{this.props.G.guesses[word] ? word : '???'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }

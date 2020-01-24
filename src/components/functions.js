@@ -39,7 +39,14 @@ export function submitClue(G, ctx, clue) {
 }
 export function submitGuess(G, ctx, guess) {
   guess = String(guess).toUpperCase()
-  guess === G.currentWord ? G.score++ : G.fails++
+  if (guess === G.currentWord) {
+    G.score++
+    G.guesses[G.currentWord] = 'correct'
+  } else {
+    G.fails++
+    G.guesses[G.words[13 - G.fails]] = 'deleted'
+    G.guesses[G.currentWord] = 'incorrect'
+  }
   nextTurn(G, ctx)
 }
 export function validateClue(G, ctx, votesArr) {

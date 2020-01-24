@@ -38,6 +38,7 @@ class GuesserBoard extends React.Component {
   }
 
   skipTurn() {
+    this.props.G.guesses[this.props.G.currentWord] = 'incorrect'
     this.props.moves.nextTurn()
   }
 
@@ -55,7 +56,7 @@ class GuesserBoard extends React.Component {
         <h4>Your clues are:</h4>
         <ul>
           {Object.keys(this.props.G.clues).map((clue, i) =>
-            this.props.G.clues[clue] > 0 ? (
+            this.props.G.clues[clue] >= 0 ? (
               <li key={i} className="emphasis">
                 {clue}
               </li>

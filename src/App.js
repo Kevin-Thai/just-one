@@ -11,7 +11,7 @@ const GameClient = Client({
   board: Board,
   multiplayer: Local(),
   numPlayers: 4,
-  // debug: false
+  debug: false,
   // multiplayer: SocketIO({ server: 'localhost:8000' }),
 })
 
