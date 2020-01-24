@@ -9,9 +9,22 @@ const GameClient = Client({
   game: JustOne,
   board: Board,
   multiplayer: Local(),
+  numPlayers: 4,
+  // debug: false
   // multiplayer: SocketIO({ server: 'localhost:8000' }),
 })
 
-const App = () => <GameClient />
+// const App = () => <GameClient />
+const App = () => (
+  <div>
+    <GameClient playerID="0" />
+    <br />
+    <GameClient playerID="1" />
+    <br />
+    <GameClient playerID="2" />
+    <br />
+    <GameClient playerID="3" />
+  </div>
+)
 
 export default App

@@ -27,15 +27,21 @@ class ClueBoard extends React.Component {
 
   handleSubmit(evt) {
     this.props.moves.submitClue(this.state.clue)
+    this.setState({ clue: '' })
   }
 
   render() {
     const clueForm = (
       <div>
-        <input type="text" name="clue" value={this.state.clue} onChange={this.handleChange} />
-        <button onClick={() => this.handleSubmit()} disabled={!this.state.clue}>
-          Submit your clue
-        </button>
+        <div>
+          <h1>The secret word is: {this.props.G.currentWord}</h1>
+        </div>
+        <div>
+          <input type="text" name="clue" value={this.state.clue} onChange={this.handleChange} />
+          <button onClick={() => this.handleSubmit()} disabled={!this.props.isActive}>
+            Submit your clue
+          </button>
+        </div>
       </div>
     )
     return <div>{clueForm}</div>

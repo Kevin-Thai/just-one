@@ -13,11 +13,11 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.props, 'props')
+    // console.log(this.props, 'props')
 
     return (
       <div>
-        {this.props.playerID === Number(this.props.ctx.currentPlayer) ? (
+        {this.props.playerID === this.props.ctx.currentPlayer ? (
           <GuesserBoard {...this.props} />
         ) : (
           <ClueBoard {...this.props} />

@@ -14,10 +14,12 @@ class GuesserBoard extends React.Component {
     super(props)
     this.state = {
       guess: '',
+      stage: 'set',
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.setGuess = this.setGuess.bind(this)
+    this.setWord = this.setWord.bind(this)
   }
 
   handleChange(evt) {
@@ -26,20 +28,36 @@ class GuesserBoard extends React.Component {
     })
   }
 
-  handleSubmit(evt) {
+  setGuess() {
     this.props.moves.submitGuess(this.state.guess)
+    this.setState({
+      guess: '',
+      stage: 'set',
+    })
+  }
+
+  setWord() {
+    this.props.moves.setWord()
+    this.setState({ stage: 'guess' })
   }
 
   render() {
+    // console.log(this.props, 'propsss')
+
     const guessForm = (
       <div>
         <input type="text" name="guess" value={this.state.guess} onChange={this.handleChange} />
-        <button onClick={() => this.handleSubmit()} disabled={!this.state.guess}>
+        <button onClick={() => this.setGuess()} disabled={!this.props.isActive}>
           Submit guess
         </button>
       </div>
     )
-    return <div>{guessForm}</div>
+    const setWordBtn = (
+      <div>
+        <button onClick={() => this.setWord()}>Set the random word!</button>
+      </div>
+    )
+    return <div>{this.state.stage === 'guess' ? guessForm : setWordBtn}</div>
   }
 }
 
