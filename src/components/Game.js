@@ -1,59 +1,25 @@
 import dictionary from '../dictionary'
-import { ActivePlayers, Stage, PlayerView } from 'boardgame.io/core'
-
-const randomWords = arr => {
-  let i = arr.length,
-    temp,
-    randomI
-  while (i > 0) {
-    randomI = Math.floor(Math.random() * i)
-    i -= 1
-    temp = arr[i]
-    arr[i] = arr[randomI]
-    arr[randomI] = temp
-  }
-  return arr.slice(0, 13)
-}
-
-function setWord(G, ctx) {
-  ctx.events.setActivePlayers({ others: 'clue', moveLimit: 1 })
-  console.log('word set')
-
-  return { ...G, currentWord: G.words[G.turns - 1] }
-}
-function submitClue(G, ctx, clue) {
-  console.log(clue, 'submit clue')
-  clue = String(clue).toUpperCase()
-  return { ...G, clues: [...G.clues, clue] }
-}
-function submitGuess(G, ctx, guess) {
-  guess = String(guess).toUpperCase()
-  guess === G.currentWord ? G.score++ : G.turns--
-  G.turns--
-  G.currentWord = null
-  G.clues = []
-  G.cluesVote = {}
-  ctx.events.endTurn()
-}
-function validateClue(G, ctx, votesArr) {
-  console.log(votesArr, 'voting')
-  votesArr.forEach((clue, i) => (votesArr[i] = G.cluesVote[i] + clue))
-  return { ...G, cluesVote: votesArr }
-}
+// import { ActivePlayers, Stage, PlayerView } from 'boardgame.io/core'
+import {
+  randomWords,
+  setWord,
+  submitClue,
+  submitGuess,
+  validateClue,
+  stages,
+  nextTurn,
+} from './functions'
 
 const JustOne = {
-  name: 'just-one',
-
   setup: () => ({
-    // players: [],
-    // guesser: null,
-    turns: 1,
+    // stage: stages[0],
+    stage: stages,
+    fails: 0,
     score: 0,
     words: randomWords(dictionary),
     currentWord: null,
     guess: null,
-    clues: [],
-    cluesVote: {},
+    clues: {},
   }),
 
   // playerView: (G, ctx, playerID) => {
@@ -65,23 +31,8 @@ const JustOne = {
     submitClue,
     submitGuess,
     validateClue,
+    nextTurn,
   },
-
-  // phases: {
-  //   setWord: {
-  //     moves: {},
-  //     onBegin: (G, ctx) => (G.currentWord = G.words.pop()),
-  //     endIf: G => G.currentWord,
-  //     next: 'submitClue',
-  //     start: true,
-  //   },
-  //   submitClue: {
-  //     moves: ['submitClue'],
-  //     onBegin: G => (G.clues = []),
-  //     endIf: G => G.clues.length === G.players.length - 1,
-  //     next: '',
-  //   },
-  // },
 
   turn: {
     activePlayers: {
@@ -90,19 +41,27 @@ const JustOne = {
     stages: {
       draw: {
         moves: { setWord },
+        next: { others: 'clue' },
       },
       clue: {
         moves: { submitClue },
-        next: 'validate',
+        moveLimit: 1,
+        next: { others: 'validate' },
       },
       validate: {
         moves: { validateClue },
+        moveLimit: 1,
+        next: { currentPlayer: 'guess' },
+      },
+      guess: {
+        moves: { submitGuess, nextTurn },
+        moveLimit: 1,
       },
     },
   },
 
   endIf: (G, ctx) => {
-    if (G.turns <= 0) {
+    if (ctx.turn > 13 - G.fails) {
       return `Game Over! Your team scored ${G.score} points out of a possible 13`
     }
   },

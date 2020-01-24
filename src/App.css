@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.board {
+  border: 1px solid blue;
+}
+
+.emphasis {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+}

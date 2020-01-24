@@ -10,13 +10,14 @@ class Board extends React.Component {
     moves: PropTypes.any.isRequired,
     playerID: PropTypes.string,
     isActive: PropTypes.bool,
+    events: PropTypes.any.isRequired,
   }
 
   render() {
-    // console.log(this.props, 'props')
+    console.log(this.props, 'props')
 
     return (
-      <div>
+      <div className="board">
         {this.props.playerID === this.props.ctx.currentPlayer ? (
           <GuesserBoard {...this.props} />
         ) : (
