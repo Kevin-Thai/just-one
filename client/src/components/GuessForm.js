@@ -14,18 +14,6 @@ const GuessForm = props => {
 
   return (
     <div>
-      <h4>Your clues are:</h4>
-      <ul>
-        {Object.keys(props.G.clues).map((clue, i) =>
-          props.G.clues[clue] > 0 ? (
-            <li key={i} className="emphasis">
-              {clue}
-            </li>
-          ) : (
-            ''
-          )
-        )}
-      </ul>
       <input type="text" name="guess" value={guess} onChange={handleChange} autoComplete="off" />
       <button onClick={() => handleGuessSubmit()} disabled={!props.isActive || !guess}>
         Submit guess

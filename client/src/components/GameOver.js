@@ -14,6 +14,7 @@ const GameOver = props => {
   return (
     <div>
       <h2>{props.ctx.gameover}</h2>
+      {/* <button onClick={() => history.pushState('/')}>Return to Lobby</button> */}
       <form>
         <label>New Room Name</label>
         <input type="text" name="gameID" value={gameID} onChange={handleChange} />

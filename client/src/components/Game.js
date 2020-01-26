@@ -1,3 +1,4 @@
+import { PlayerView } from 'boardgame.io/core'
 import dictionary from '../dictionary'
 import {
   randomWords,
@@ -10,6 +11,7 @@ import {
 } from './functions'
 
 const JustOne = {
+  name: 'just-one',
   setup: () => ({
     stage: stages,
     fails: 0,
@@ -22,9 +24,7 @@ const JustOne = {
     result: null,
   }),
 
-  // playerView: (G, ctx, playerID) => {
-  //   return PlayerView.STRIP_SECRETS(G, playerID)
-  // },
+  playerView: PlayerView.STRIP_SECRETS,
 
   moves: {
     submitClue,
@@ -67,7 +67,7 @@ const JustOne = {
   },
 
   endIf: (G, ctx) => {
-    if (ctx.turn > 13 - G.fails) {
+    if (ctx.turn > 1 - G.fails) {
       return `Game Over! Your team scored ${G.score}/13 points`
     }
   },

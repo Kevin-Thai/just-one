@@ -30,8 +30,8 @@ class Board extends React.Component {
           </div>
         )}
         <div className="right">
-          <h3>Player: {this.props.playerID}</h3>
-          <h3>Room Name: {this.props.gameID}</h3>
+          <h3>You are Player {Number(this.props.playerID) + 1}</h3>
+          <h3>Room: {this.props.gameID}</h3>
           <table>
             <thead>
               <tr>
