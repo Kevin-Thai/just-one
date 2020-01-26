@@ -16,7 +16,7 @@
     "superagent": "^5.2.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node -r esm server",
     "build": "cd client/ && npm install && npm run build"
   },
   "eslintConfig": {
