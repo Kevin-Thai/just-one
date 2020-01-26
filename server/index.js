@@ -4,7 +4,7 @@
 // server.run(8000, () => console.log('Server running on port 8000'))
 
 import { Server, FlatFile } from 'boardgame.io/server'
-import JustOne from '../src/components/Game'
+import JustOne from '../client/src/components/Game'
 import Router from 'koa-router'
 import Koa from 'koa'
 import cors from '@koa/cors'
@@ -14,7 +14,7 @@ import request from 'superagent'
 
 const app = new Koa()
 const router = new Router()
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const API_PORT = 8001
 const INTERNAL_API_PORT = 8002
 
