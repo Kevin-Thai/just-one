@@ -11,6 +11,11 @@ export function nextTurn(G, ctx) {
   ctx.events.endTurn()
 }
 
+export function skipTurn(G, ctx) {
+  G.guesses[G.currentWord] = 'incorrect'
+  nextTurn(G, ctx)
+}
+
 export const randomWords = arr => {
   let i = arr.length,
     temp,
@@ -25,10 +30,6 @@ export const randomWords = arr => {
   return arr.slice(0, 13)
 }
 
-export function setWord(G, ctx) {
-  ctx.events.setActivePlayers({ others: 'clue', moveLimit: 1 })
-  return { ...G, currentWord: G.words[ctx.turn - 1] }
-}
 export function submitClue(G, ctx, clue) {
   clue = String(clue).toUpperCase()
   if (G.clues[clue]) G.clues[clue] = -100
@@ -55,7 +56,4 @@ export function validateClue(G, ctx, votesArr) {
   })
   if (Object.keys(ctx.activePlayers).length === 1)
     ctx.events.setActivePlayers({ currentPlayer: { stage: 'guess', moveLimit: 1 } })
-  // return { ...G, cluesVote: votesArr }
-  // votesArr.forEach((clue, i) => (votesArr[i] = G.cluesVote[i] + clue))
-  // return { ...G, cluesVote: votesArr }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import GuesserBoard from './GuesserBoard'
 import ClueBoard from './ClueBoard'
+import GameOver from './GameOver'
 
 class Board extends React.Component {
   static propTypes = {
@@ -9,14 +10,16 @@ class Board extends React.Component {
     ctx: PropTypes.any.isRequired,
     moves: PropTypes.any.isRequired,
     playerID: PropTypes.string,
+    gameID: PropTypes.string,
     isActive: PropTypes.bool,
     events: PropTypes.any.isRequired,
   }
 
   render() {
-    console.log(this.props, 'props')
-
-    return (
+    console.log(this.props.gameID, 'props')
+    return this.props.ctx.gameover ? (
+      <GameOver {...this.props} />
+    ) : (
       <div className="board">
         <div className="left">
           {/* <h4>
@@ -28,11 +31,11 @@ class Board extends React.Component {
             <ClueBoard {...this.props} />
           )}
         </div>
-        {/* <div className="right">
+        <div className="right">
           <table>
             <thead>
               <tr>
-                <th className="emphasis">{this.props.G.score}/13</th>
+                <th className="emphasis">Score: {this.props.G.score}/13</th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +46,7 @@ class Board extends React.Component {
               ))}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </div>
     )
   }

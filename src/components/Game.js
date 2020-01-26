@@ -1,18 +1,16 @@
 import dictionary from '../dictionary'
-// import { ActivePlayers, Stage, PlayerView } from 'boardgame.io/core'
 import {
   randomWords,
-  setWord,
   submitClue,
   submitGuess,
   validateClue,
   stages,
   nextTurn,
+  skipTurn,
 } from './functions'
 
 const JustOne = {
   setup: () => ({
-    // stage: stages[0],
     stage: stages,
     fails: 0,
     score: 0,
@@ -27,22 +25,21 @@ const JustOne = {
   // },
 
   moves: {
-    setWord,
     submitClue,
     submitGuess,
     validateClue,
     nextTurn,
+    skipTurn,
   },
 
   turn: {
+    onBegin: (G, ctx) => {
+      return { ...G, currentWord: G.words[ctx.turn] }
+    },
     activePlayers: {
-      currentPlayer: { stage: 'draw', moveLimit: 1 },
+      others: { stage: 'clue', moveLimit: 1 },
     },
     stages: {
-      draw: {
-        moves: { setWord },
-        next: { others: 'clue' },
-      },
       clue: {
         moves: { submitClue },
         moveLimit: 1,
@@ -54,14 +51,14 @@ const JustOne = {
         next: { currentPlayer: 'guess' },
       },
       guess: {
-        moves: { submitGuess, nextTurn },
+        moves: { submitGuess, skipTurn, nextTurn },
         moveLimit: 1,
       },
     },
   },
 
   endIf: (G, ctx) => {
-    if (ctx.turn > 13 - G.fails) {
+    if (ctx.turn > 1 - G.fails) {
       return `Game Over! Your team scored ${G.score} points out of a possible 13`
     }
   },

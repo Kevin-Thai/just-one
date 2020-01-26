@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import ValidationForm from './ValidationForm'
+import ClueForm from './ClueForm'
 
 class ClueBoard extends React.Component {
   static propTypes = {
@@ -12,72 +13,10 @@ class ClueBoard extends React.Component {
     events: PropTypes.any.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      clue: '',
-      votes: {},
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClueSubmit = this.handleClueSubmit.bind(this)
-  }
-
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value.toUpperCase(),
-    })
-  }
-
-  handleClueSubmit() {
-    this.props.moves.submitClue(this.state.clue)
-    this.setState({ clue: '' })
-  }
-
-  // handleSwitch(stage) {
-  //   switch (stage) {
-  //     case 'clue':
-  //       return clueForm
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
-
   render() {
     const stage = this.props.ctx.activePlayers
       ? this.props.ctx.activePlayers[this.props.playerID]
       : ''
-    const clueForm = (
-      <div>
-        {this.props.isActive ? (
-          <form>
-            <div>
-              <input
-                type="text"
-                name="clue"
-                value={this.state.clue}
-                onChange={this.handleChange}
-                required
-              />
-              <button
-                onClick={() => this.handleClueSubmit()}
-                disabled={
-                  this.props.G.currentWord.includes(this.state.clue) ||
-                  this.state.clue.includes(this.props.G.currentWord)
-                }
-                // hidden={!this.state.clue || !this.props.isActive}
-              >
-                Submit your clue
-              </button>
-            </div>
-          </form>
-        ) : (
-          ''
-        )}
-      </div>
-    )
-
     return (
       <div>
         <h2>{stage ? this.props.G.stage[stage] : 'Waiting...'}</h2>
@@ -90,16 +29,8 @@ class ClueBoard extends React.Component {
             ''
           )}
         </div>
-        {stage === 'clue' ? clueForm : ''}
-        {stage === 'validate' ? (
-          <ValidationForm
-            {...this.props}
-            handleValidate={() => this.handleValidate()}
-            handleVoteChange={(clue, val) => this.handleVoteChange(clue, val)}
-          />
-        ) : (
-          ''
-        )}
+        {stage === 'clue' ? <ClueForm {...this.props} /> : ''}
+        {stage === 'validate' ? <ValidationForm {...this.props} /> : ''}
       </div>
     )
   }
