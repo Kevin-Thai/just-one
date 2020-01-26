@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import GuesserBoard from './GuesserBoard'
 import ClueBoard from './ClueBoard'
+import GameOver from './GameOver'
 
 class Board extends React.Component {
   static propTypes = {
@@ -9,30 +10,32 @@ class Board extends React.Component {
     ctx: PropTypes.any.isRequired,
     moves: PropTypes.any.isRequired,
     playerID: PropTypes.string,
+    gameID: PropTypes.string,
     isActive: PropTypes.bool,
     events: PropTypes.any.isRequired,
   }
 
   render() {
-    console.log(this.props, 'props')
-
     return (
       <div className="board">
-        <div className="left">
-          <h4>
-            Your team's score: <span className="emphasis">{this.props.G.score}/13</span>
-          </h4>
-          {this.props.playerID === this.props.ctx.currentPlayer ? (
-            <GuesserBoard {...this.props} />
-          ) : (
-            <ClueBoard {...this.props} />
-          )}
-        </div>
+        {this.props.ctx.gameover ? (
+          <GameOver {...this.props} />
+        ) : (
+          <div className="left">
+            {this.props.playerID === this.props.ctx.currentPlayer ? (
+              <GuesserBoard {...this.props} />
+            ) : (
+              <ClueBoard {...this.props} />
+            )}
+          </div>
+        )}
         <div className="right">
+          <h3>Player: {this.props.playerID}</h3>
+          <h3>Room Name: {this.props.gameID}</h3>
           <table>
             <thead>
               <tr>
-                <th>WORDS</th>
+                <th className="emphasis">Score: {this.props.G.score}/13</th>
               </tr>
             </thead>
             <tbody>
