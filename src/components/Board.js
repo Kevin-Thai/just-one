@@ -16,22 +16,22 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.props.gameID, 'props')
-    return this.props.ctx.gameover ? (
-      <GameOver {...this.props} />
-    ) : (
+    return (
       <div className="board">
-        <div className="left">
-          {/* <h4>
-            Your team's score: <span ></span>
-          </h4> */}
-          {this.props.playerID === this.props.ctx.currentPlayer ? (
-            <GuesserBoard {...this.props} />
-          ) : (
-            <ClueBoard {...this.props} />
-          )}
-        </div>
+        {this.props.ctx.gameover ? (
+          <GameOver {...this.props} />
+        ) : (
+          <div className="left">
+            {this.props.playerID === this.props.ctx.currentPlayer ? (
+              <GuesserBoard {...this.props} />
+            ) : (
+              <ClueBoard {...this.props} />
+            )}
+          </div>
+        )}
         <div className="right">
+          <h3>Player: {this.props.playerID}</h3>
+          <h3>Room Name: {this.props.gameID}</h3>
           <table>
             <thead>
               <tr>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const GuessForm = props => {
   const [guess, setGuess] = useState('')
 
   const handleChange = evt => {
-    setGuess(evt.target.value.toUpperCase())
+    setGuess(evt.target.value.toUpperCase().replace(/ /g, ''))
   }
 
   const handleGuessSubmit = () => {
@@ -26,7 +26,7 @@ const GuessForm = props => {
           )
         )}
       </ul>
-      <input type="text" name="guess" value={guess} onChange={handleChange} />
+      <input type="text" name="guess" value={guess} onChange={handleChange} autoComplete="off" />
       <button onClick={() => handleGuessSubmit()} disabled={!props.isActive || !guess}>
         Submit guess
       </button>

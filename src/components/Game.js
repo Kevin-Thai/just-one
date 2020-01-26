@@ -5,8 +5,8 @@ import {
   submitGuess,
   validateClue,
   stages,
-  nextTurn,
   skipTurn,
+  endTurn,
 } from './functions'
 
 const JustOne = {
@@ -18,6 +18,8 @@ const JustOne = {
     currentWord: null,
     guesses: {},
     clues: {},
+    guess: null,
+    result: null,
   }),
 
   // playerView: (G, ctx, playerID) => {
@@ -28,8 +30,8 @@ const JustOne = {
     submitClue,
     submitGuess,
     validateClue,
-    nextTurn,
     skipTurn,
+    endTurn,
   },
 
   turn: {
@@ -51,15 +53,22 @@ const JustOne = {
         next: { currentPlayer: 'guess' },
       },
       guess: {
-        moves: { submitGuess, skipTurn, nextTurn },
+        moves: { submitGuess, skipTurn },
         moveLimit: 1,
       },
+      results: {
+        moves: { endTurn },
+        moveLimit: 1,
+      },
+    },
+    onEnd: (G, ctx) => {
+      return { ...G, clues: {}, currentWord: null, result: null, guess: null }
     },
   },
 
   endIf: (G, ctx) => {
-    if (ctx.turn > 1 - G.fails) {
-      return `Game Over! Your team scored ${G.score} points out of a possible 13`
+    if (ctx.turn > 13 - G.fails) {
+      return `Game Over! Your team scored ${G.score}/13 points`
     }
   },
 }

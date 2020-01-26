@@ -1,19 +1,17 @@
 export const stages = {
-  draw: 'Set the random word!',
   clue: 'Submit your clues',
   validate: `Validate your team's clues`,
   guess: 'What is the mystery word?',
 }
 
-export function nextTurn(G, ctx) {
-  G.currentWord = null
-  G.clues = {}
+export function endTurn(G, ctx) {
   ctx.events.endTurn()
 }
 
 export function skipTurn(G, ctx) {
   G.guesses[G.currentWord] = 'incorrect'
-  nextTurn(G, ctx)
+  G.result = 'skipped'
+  ctx.events.setActivePlayers({ currentPlayer: 'results' })
 }
 
 export const randomWords = arr => {
@@ -36,19 +34,21 @@ export function submitClue(G, ctx, clue) {
   else G.clues[clue] = 1
   if (Object.keys(ctx.activePlayers).length === 1)
     ctx.events.setActivePlayers({ others: 'validate', moveLimit: 1 })
-  // return { ...G, clues: [...G.clues, clue] }
 }
 export function submitGuess(G, ctx, guess) {
   guess = String(guess).toUpperCase()
   if (guess === G.currentWord) {
     G.score++
     G.guesses[G.currentWord] = 'correct'
+    G.result = 'correct'
   } else {
     G.fails++
     G.guesses[G.words[13 - G.fails]] = 'deleted'
     G.guesses[G.currentWord] = 'incorrect'
+    G.guess = guess
+    G.result = 'incorrect'
   }
-  nextTurn(G, ctx)
+  ctx.events.setActivePlayers({ currentPlayer: 'results' })
 }
 export function validateClue(G, ctx, votesArr) {
   Object.keys(G.clues).forEach(clue => {

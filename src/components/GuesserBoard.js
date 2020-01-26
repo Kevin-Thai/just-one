@@ -1,36 +1,28 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
 import GuessForm from './GuessForm'
+import Results from './Results'
 
 class GuesserBoard extends React.Component {
-  static propTypes = {
-    G: PropTypes.any.isRequired,
-    ctx: PropTypes.any.isRequired,
-    moves: PropTypes.any.isRequired,
-    playerID: PropTypes.string,
-    isActive: PropTypes.bool,
-    events: PropTypes.any.isRequired,
-  }
-
   render() {
     const stage = this.props.ctx.activePlayers
       ? this.props.ctx.activePlayers[this.props.playerID]
       : ''
-    const setWordBtn = (
-      <div>
-        <button onClick={() => this.props.moves.setWord()}>
-          <span role="img" aria-label="dice">
-            🎲
-          </span>
-        </button>
-      </div>
-    )
-    return (
+    return this.props.G.result ? (
+      <Results {...this.props} guesser={true} />
+    ) : (
       <div>
         <h1>You are the guesser!</h1>
-        <h2>{stage ? this.props.G.stage[stage] : 'Waiting for your clues...'}</h2>
-        {stage === 'guess' ? <GuessForm {...this.props} /> : ''}
-        {stage === 'draw' ? setWordBtn : ''}
+        {stage === 'guess' ? (
+          <Fragment>
+            <h2>{this.props.G.stage[stage]}</h2>
+            <GuessForm {...this.props} playerID={this.props.playerID} />
+            <div>
+              <h4>Remember, the mystery word is a single word</h4>
+            </div>
+          </Fragment>
+        ) : (
+          <h2>Waiting for your clues...</h2>
+        )}
       </div>
     )
   }
