@@ -16,8 +16,8 @@
     "superagent": "^5.2.1"
   },
   "scripts": {
-    "start": "nodemon -r esm server",
-    "react-start": "react-scripts start",
+    "start": "react-scripts start",
+    "server": "nodemon -r esm server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
