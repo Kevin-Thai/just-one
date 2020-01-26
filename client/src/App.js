@@ -14,7 +14,8 @@ const GameClient = Client({
   board: Board,
   numPlayers: 4,
   debug: false,
-  multiplayer: SocketIO({ server: `${window.location.hostname}:${8000}` }),
+  // multiplayer: SocketIO({ server: `${window.location.hostname}:${8000}` }),
+  multiplayer: SocketIO({ server: `https://just-one-game.herokuapp.com/` }),
 })
 
 const App = () => {

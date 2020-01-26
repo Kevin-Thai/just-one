@@ -1,12 +1,8 @@
-// const Server = require('boardgame.io/server').Server
-// const JustOne = require('../src/components/Game')
-// const server = Server({ games: [JustOne] })
-// server.run(8000, () => console.log('Server running on port 8000'))
-
 import { Server, FlatFile } from 'boardgame.io/server'
 import JustOne from '../client/src/components/Game'
 import Router from 'koa-router'
 import Koa from 'koa'
+import serve from 'koa-static'
 import cors from '@koa/cors'
 import koaBody from 'koa-body'
 import request from 'superagent'
@@ -19,6 +15,8 @@ const API_PORT = 8001
 const INTERNAL_API_PORT = 8002
 
 const server = Server({ games: [JustOne] })
+
+app.use(serve('./client/build'))
 
 router.get('/players/:id', async ctx => {
   const gameID = ctx.params.id
