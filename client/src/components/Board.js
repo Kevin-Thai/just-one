@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table } from 'reactstrap'
 import PropTypes from 'prop-types'
 import GuesserBoard from './GuesserBoard'
 import ClueBoard from './ClueBoard'
@@ -32,7 +33,7 @@ class Board extends React.Component {
         <div className="right">
           <h5>You are Player {Number(this.props.playerID) + 1}</h5>
           {/* <h3>Room: {this.props.gameID}</h3> */}
-          <table>
+          <Table size="sm">
             <thead>
               <tr>
                 <th className="emphasis">Score: {this.props.G.score}/13</th>
@@ -45,7 +46,7 @@ class Board extends React.Component {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
     )

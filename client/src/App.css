@@ -59,6 +59,7 @@
 }
 .deleted {
   background-color: black;
+  color: black;
 }
 
 .board {
@@ -79,11 +80,12 @@
 }
 
 .left {
-  width: 85vw;
+  width: 75vw;
 }
 
 .right {
-  width: 15vw;
+  width: 18vw;
+  padding-left: 15px;
 }
 
 .warning {
@@ -93,4 +95,17 @@
 
 .centered {
   text-align: center;
+}
+
+.input-sm {
+  width: 50%;
+}
+
+.logo {
+  height: 80px;
+}
+
+.header {
+  /* height: 6.9vh; */
+  padding: 5px 15px;
 }

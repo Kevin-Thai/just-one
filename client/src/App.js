@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CardBody } from 'reactstrap'
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { Client } from 'boardgame.io/react'
 // import { Lobby } from 'boardgame.io/react'
@@ -24,12 +25,14 @@ const App = props => {
 
   return (
     <div>
-      <GameClient
-        gameID={gameID}
-        credentials={secret}
-        playerID={playerID + ''}
-        setGameID={setGameID}
-      />
+      <CardBody>
+        <GameClient
+          gameID={gameID}
+          credentials={secret}
+          playerID={playerID + ''}
+          setGameID={setGameID}
+        />
+      </CardBody>
     </div>
   )
 }

@@ -1,5 +1,16 @@
 import React from 'react'
 import request from 'superagent'
+import {
+  CardBody,
+  Form,
+  FormGroup,
+  FormFeedback,
+  Label,
+  Input,
+  Button,
+  Col,
+  Table,
+} from 'reactstrap'
 
 const API_PORT = 8001
 
@@ -78,46 +89,63 @@ class Lobby extends React.Component {
     if (!this.state.created) {
       createForm = (
         <div>
-          <form>
-            <label htmlFor="players">Players</label>
-            <select
-              name="players"
-              id="players"
-              onChange={this.onUpdatePlayerCount}
-              value={this.state.players}>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-            </select>
-          </form>
-          <form>
+          <Form>
+            <FormGroup row>
+              <Label for="players" sm={2}>
+                Players
+              </Label>
+              <Col sm={10}>
+                <Input
+                  type="select"
+                  name="players"
+                  id="players"
+                  onChange={this.onUpdatePlayerCount}
+                  value={this.state.players}>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <hr />
             {Array(this.state.players)
               .fill(0)
               .map((val, i) => (
-                <div key={i}>
-                  <label htmlFor={`player${i}`}>Name</label>
-                  <input
-                    autoComplete="off"
-                    type="text"
-                    name={`player${i}`}
-                    id={`player${i}`}
-                    onChange={evt => this.onUpdateName(i, evt)}
-                    value={this.state.names[i]}
-                  />
-                </div>
+                <FormGroup row key={i}>
+                  <Label for={`player${i}`} sm={2}>
+                    Name
+                  </Label>
+                  <Col sm={10}>
+                    <Input
+                      autoComplete="off"
+                      type="text"
+                      name={`player${i}`}
+                      id={`player${i}`}
+                      onChange={evt => this.onUpdateName(i, evt)}
+                      value={this.state.names[i]}
+                    />
+                    <FormFeedback>Can not be empty</FormFeedback>
+                  </Col>
+                </FormGroup>
               ))}
-          </form>
-          <button disabled={!this.isFormValid()} onClick={this.createGame}>
-            Submit
-          </button>
+            <hr />
+            <Button
+              block
+              size="lg"
+              color="warning"
+              disabled={!this.isFormValid()}
+              onClick={this.createGame}>
+              Submit
+            </Button>
+          </Form>
         </div>
       )
     } else {
       linkDisplay = (
         <div>
           <p>Distribute these links to the other players individually</p>
-          <table>
+          <Table>
             <tbody>
               {Array(this.state.players)
                 .fill(0)
@@ -133,15 +161,15 @@ class Lobby extends React.Component {
                   </tr>
                 ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       )
     }
     return (
-      <div>
+      <CardBody>
         {createForm}
         {linkDisplay}
-      </div>
+      </CardBody>
     )
   }
 }

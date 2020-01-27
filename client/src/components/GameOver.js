@@ -1,11 +1,14 @@
 import React from 'react'
 import history from '../history'
+import { Button } from 'reactstrap'
 
 const GameOver = props => {
   return (
     <div>
       <h2>{props.ctx.gameover}</h2>
-      <button onClick={() => history.push('/')}>Return to Lobby</button>
+      <Button onClick={() => history.push('/')} color="info">
+        Return to Lobby
+      </Button>
     </div>
   )
 }

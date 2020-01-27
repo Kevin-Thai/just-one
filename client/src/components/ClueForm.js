@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ListGroup, Form, Input, Button } from 'reactstrap'
 import Rules from './Rules'
 
 const ClueForm = props => {
@@ -8,16 +9,17 @@ const ClueForm = props => {
     setClue(evt.target.value.toUpperCase().replace(/ /g, ''))
   }
 
-  const handleClueSubmit = () => {
+  const handleClueSubmit = evt => {
+    evt.preventDefault()
     props.moves.submitClue(clue)
     setClue('')
   }
 
   return (
     <div>
-      <form>
+      <Form inline onSubmit={handleClueSubmit}>
         <div>
-          <input
+          <Input
             type="text"
             name="clue"
             value={clue}
@@ -26,15 +28,18 @@ const ClueForm = props => {
             maxLength="20"
             autoComplete="off"
           />
-          <button
-            onClick={() => handleClueSubmit()}
+          <Button
+            // onClick={() => handleClueSubmit()}
+            color="success"
             disabled={props.G.currentWord.includes(clue) || clue.includes(props.G.currentWord)}
             // hidden={!clue || !this.props.isActive}
           >
             Submit your clue
-          </button>
+          </Button>
         </div>
-      </form>
+      </Form>
+      <br />
+      <hr />
       <Rules />
     </div>
   )
