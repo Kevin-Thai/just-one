@@ -15,10 +15,12 @@ const ValidationForm = props => {
   }
   return (
     <div>
-      <form onSubmit={handleValidate}>
+      <table>
         {Object.keys(props.G.clues).map((clue, i) => (
-          <div key={i}>
-            {props.G.clues[clue] > -50 ? (
+          <tr key={i}>
+            {/* {props.G.clues[clue] > -50 ? ( */}
+
+            <td>
               <label>
                 <input
                   type="radio"
@@ -26,34 +28,37 @@ const ValidationForm = props => {
                   name={clue}
                   checked={votes[clue] === 1}
                   onChange={() => handleVoteChange(clue, 1)}
+                  disabled={props.G.clues[clue] < -50}
                 />
                 Approve
               </label>
-            ) : (
-              <span>(IDENTICAL SUBMISSION)</span>
-            )}
-            <label key={i}>
-              <input
-                type="radio"
-                value={-1}
-                name={clue}
-                checked={votes[clue] === -1}
-                onChange={() => handleVoteChange(clue, -1)}
-              />
-              Reject
-            </label>
-            <span className="emphasis"> {clue}</span>
-            {/* <span className="warning">
-              {props.G.clues[clue] < 0 ? ' (DUPLICATE SUBMISSION)' : ''}
-            </span> */}
-          </div>
+            </td>
+            {/* ) : (
+              <span>(IDENTICAL SUBMISSION)</span> */}
+            <td>
+              <label key={i}>
+                <input
+                  type="radio"
+                  value={-1}
+                  name={clue}
+                  checked={votes[clue] === -1}
+                  onChange={() => handleVoteChange(clue, -1)}
+                />
+                Reject
+              </label>
+            </td>
+            <td className="emphasis"> {clue}</td>
+            <td className="warning">
+              {props.G.clues[clue] < -50 ? ' (DUPLICATE SUBMISSION)' : ''}
+            </td>
+          </tr>
         ))}
         <button
-          type="submit"
+          onClick={handleValidate}
           disabled={Object.keys(props.G.clues).length !== Object.keys(votes).length}>
           Finalize Votes
         </button>
-      </form>
+      </table>
       <Rules stage="validate" />
     </div>
   )

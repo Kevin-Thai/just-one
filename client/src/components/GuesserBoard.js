@@ -18,10 +18,12 @@ class GuesserBoard extends React.Component {
               <h2>{this.props.G.stage[stage]}</h2>
               <GuessForm {...this.props} playerID={this.props.playerID} />
               <div>
-                <h4>Correct guess = 1 point</h4>
-                <h4>Incorrect guess = 0 points and loss of an extra round</h4>
-                <h4>Skip = 0 points</h4>
-                <h4>Remember, the mystery word is a single word</h4>
+                <h4>Points</h4>
+                <ul>
+                  <li>Correct guess = 1 point</li>
+                  <li>Incorrect guess = 0 points and loss of an extra round</li>
+                  <li>Skip = 0 points</li>
+                </ul>
               </div>
             </div>
             <div class="clues">
@@ -40,7 +42,7 @@ class GuesserBoard extends React.Component {
             </div>
           </div>
         ) : (
-          <h2>Waiting for your clues...</h2>
+          <h2 className="hidden">Waiting for your clues...</h2>
         )}
       </div>
     )

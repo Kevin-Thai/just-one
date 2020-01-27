@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-#root {
-  border: 1px solid blue;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -78,12 +74,23 @@
 }
 
 .guess-form {
-  width: 40vw;
+  /* width: 35%; */
+  padding-right: 35px;
 }
 
 .left {
-  width: 80vw;
+  width: 85vw;
 }
+
 .right {
-  width: 20vw;
+  width: 15vw;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+}
+
+.centered {
+  text-align: center;
 }

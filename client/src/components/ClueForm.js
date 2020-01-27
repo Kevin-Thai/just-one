@@ -23,6 +23,7 @@ const ClueForm = props => {
             value={clue}
             onChange={handleChange}
             required
+            maxLength="20"
             autoComplete="off"
           />
           <button

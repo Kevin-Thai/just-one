@@ -7,16 +7,18 @@ export default props => {
   const switcher = () => {
     switch (props.G.result) {
       case 'correct':
-        return <h2>Correct!</h2>
+        return <h2 className="correct">Your team guessed correctly!</h2>
       case 'incorrect':
         return (
           <div>
-            <h2>Incorrect</h2>
-            <h4>The guess: {props.G.guess}</h4>
+            <h2 className="incorrect">Wrong! That was not the mystery word.</h2>
+            <h4>
+              <span className="incorrect">{props.G.guess}</span> was your team's guess.
+            </h4>
           </div>
         )
       case 'skipped':
-        return <h2>The guesser skipped the turn</h2>
+        return <h2 className="hidden">The guesser skipped their turn.</h2>
       default:
         return ''
     }
@@ -24,9 +26,11 @@ export default props => {
 
   return (
     <div>
-      <h1>Results: </h1>
+      <h1>The results are in!</h1>
       {switcher()}
-      <h4>The mystery word: {props.G.currentWord} </h4>
+      <h4>
+        <span className="emphasis">{props.G.currentWord}</span> was the mystery word.
+      </h4>
     </div>
   )
 }

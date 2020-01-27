@@ -24,6 +24,7 @@ class ClueBoard extends React.Component {
         </div>
         {stage === 'clue' ? <ClueForm {...this.props} /> : ''}
         {stage === 'validate' ? <ValidationForm {...this.props} /> : ''}
+        {stage !== 'clue' && stage !== 'validate' ? <h4>Waiting for other players...</h4> : ''}
       </div>
     )
   }

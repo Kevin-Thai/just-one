@@ -30,8 +30,8 @@ class Board extends React.Component {
           </div>
         )}
         <div className="right">
-          <h3>You are Player {Number(this.props.playerID) + 1}</h3>
-          <h3>Room: {this.props.gameID}</h3>
+          <h5>You are Player {Number(this.props.playerID) + 1}</h5>
+          {/* <h3>Room: {this.props.gameID}</h3> */}
           <table>
             <thead>
               <tr>
@@ -41,7 +41,7 @@ class Board extends React.Component {
             <tbody>
               {this.props.G.words.map((word, i) => (
                 <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
-                  <td>{this.props.G.guesses[word] ? word : '???'}</td>
+                  <td className="centered">{this.props.G.guesses[word] ? word : '???'}</td>
                 </tr>
               ))}
             </tbody>

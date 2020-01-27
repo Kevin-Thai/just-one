@@ -67,7 +67,7 @@ const JustOne = {
   },
 
   endIf: (G, ctx) => {
-    if (ctx.turn > 1 - G.fails) {
+    if (ctx.turn > 13 - G.fails) {
       return `Game Over! Your team scored ${G.score}/13 points`
     }
   },

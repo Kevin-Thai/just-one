@@ -1,6 +1,5 @@
 {
   "name": "just-one",
-  "proxy": "http://localhost:8000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "boardgame.io": "^0.35.1",
     "esm": "^3.2.25",
+    "history": "^4.10.1",
     "koa": "^2.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

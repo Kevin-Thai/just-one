@@ -9,7 +9,10 @@
     "boardgame.io": "^0.35.1",
     "esm": "^3.2.25",
     "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cors": "0.0.16",
     "koa-mount": "^4.0.0",
+    "koa-router": "^8.0.6",
     "koa-static": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -21,6 +24,10 @@
     "start": "node -r esm server",
     "build": "cd client/ && npm install && npm run build"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },

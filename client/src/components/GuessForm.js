@@ -14,7 +14,14 @@ const GuessForm = props => {
 
   return (
     <div>
-      <input type="text" name="guess" value={guess} onChange={handleChange} autoComplete="off" />
+      <input
+        type="text"
+        name="guess"
+        value={guess}
+        onChange={handleChange}
+        autoComplete="off"
+        maxLength="20"
+      />
       <button onClick={() => handleGuessSubmit()} disabled={!props.isActive || !guess}>
         Submit guess
       </button>
