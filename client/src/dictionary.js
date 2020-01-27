@@ -1,4 +1,5 @@
 const dictionary = [
+  'AFRICA',
   'AIRPORT',
   'ANGEL',
   'ANNIVERSARY',
@@ -27,7 +28,7 @@ const dictionary = [
   'COCKROACH',
   'CODE',
   'COFFEE',
-  'DIABLO',
+  'DEVIL',
   'DICTIONARY',
   'DINOSAUR',
   'DONATION',
@@ -121,7 +122,6 @@ const dictionary = [
   'STARK',
   'SUGAR',
   'SUMMER',
-  'TABOO',
   'TEQUILA',
   'THANOS',
   'THOR',
