@@ -10,7 +10,7 @@ const Chat = props => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.moves.chatSubmit(`Player ${props.playerID}: ${message}`)
+    props.moves.chatSubmit(`${props.name}: ${message}`)
     setMessage('')
   }
   return (

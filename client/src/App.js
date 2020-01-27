@@ -20,18 +20,13 @@ const GameClient = Client({
 const App = props => {
   const { params } = props.match
   const [playerID] = useState(params.id)
-  const [gameID, setGameID] = useState(params.game)
+  const [gameID] = useState(params.game)
   const [secret] = useState(params.secret)
 
   return (
     <div>
       <CardBody>
-        <GameClient
-          gameID={gameID}
-          credentials={secret}
-          playerID={playerID + ''}
-          setGameID={setGameID}
-        />
+        <GameClient gameID={gameID} credentials={secret} playerID={playerID + ''} />
       </CardBody>
     </div>
   )

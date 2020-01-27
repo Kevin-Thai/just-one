@@ -17,6 +17,14 @@ const INTERNAL_API_PORT = 8002
 app.use(koaBody())
 app.use(cors())
 
+router.get('/players/:id', async ctx => {
+  const gameID = ctx.params.id
+  const r = await request.get(
+    `http://localhost:${INTERNAL_API_PORT}/games/${JustOne.name}/${gameID}`
+  )
+  ctx.body = r.body
+})
+
 router.post('/create', async ctx => {
   const r = await request
     .post(`http://localhost:${INTERNAL_API_PORT}/games/${JustOne.name}/create`)
