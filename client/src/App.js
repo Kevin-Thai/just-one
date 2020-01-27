@@ -5,8 +5,8 @@ import { Client } from 'boardgame.io/react'
 import JustOne from './components/Game'
 import Board from './components/Board'
 import './App.css'
-const PORT = 8000
 
+const PORT = 8000
 const url =
   window.location.protocol +
   '//' +

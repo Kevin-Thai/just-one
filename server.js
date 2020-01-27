@@ -10,7 +10,7 @@ const app = new Koa()
 const router = new Router()
 const server = Server({ games: [JustOne] })
 
-export const PORT = 8000
+export const PORT = process.env.PORT || 8000
 export const API_PORT = 8001
 export const INTERNAL_API_PORT = 8002
 
