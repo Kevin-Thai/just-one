@@ -46,7 +46,7 @@ const JustOne = {
     },
     stages: {
       clue: {
-        moves: { submitClue, chatSubmit },
+        moves: { submitClue },
         // moveLimit: 1,
         next: { others: 'validate' },
       },

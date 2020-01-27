@@ -89,8 +89,9 @@ class Board extends React.Component {
               ))}
             </tbody>
           </Table>
-          {stage === 'validate' || stage === 'waiting' ? (
-            <Chat {...this.props} name={this.state.names[this.props.playerID]} />
+          {/* {stage === 'validate' || stage === 'waiting' ? ( */}
+          {this.props.playerID !== this.props.ctx.currentPlayer ? (
+            <Chat {...this.props} name={this.state.names[this.props.playerID]} stage={stage} />
           ) : (
             ''
           )}

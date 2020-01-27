@@ -25,14 +25,17 @@ const Chat = props => {
           <Input
             type="text"
             name="msg"
+            disabled={Object.values(props.ctx.activePlayers).includes('clue')}
             value={message}
             onChange={handleChange}
             required
             maxLength="75"
             autoComplete="off"
           />
-          <Button color="success" disabled={!message}>
-            Enter
+          <Button
+            color="success"
+            disabled={!message || Object.values(props.ctx.activePlayers).includes('clue')}>
+            {Object.values(props.ctx.activePlayers).includes('clue') ? 'Disabled' : 'Enter'}
           </Button>
         </div>
       </Form>
