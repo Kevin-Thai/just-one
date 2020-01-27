@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CustomInput, Table, Label, Button, Input, Form, FormGroup } from 'reactstrap'
+import { CustomInput, Label, Button, Form, FormGroup } from 'reactstrap'
 import Rules from './Rules'
 
 const ValidationForm = props => {

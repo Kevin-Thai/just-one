@@ -120,6 +120,7 @@ class Lobby extends React.Component {
                     <Input
                       autoComplete="off"
                       type="text"
+                      maxLength="14"
                       name={`player${i}`}
                       id={`player${i}`}
                       onChange={evt => this.onUpdateName(i, evt)}

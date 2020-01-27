@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ListGroup, Form, Input, Button } from 'reactstrap'
+import { Form, Input, Button } from 'reactstrap'
 import Rules from './Rules'
 
 const ClueForm = props => {
