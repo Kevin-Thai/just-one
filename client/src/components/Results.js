@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { ListGroup } from 'reactstrap'
 
 export default props => {
   useEffect(() => {
-    if (props.guesser && props.G.result) setTimeout(() => props.events.endTurn(), 6000)
+    if (props.guesser && props.G.result) setTimeout(() => props.events.endTurn(), 6500)
   }, [])
   const switcher = () => {
     switch (props.G.result) {

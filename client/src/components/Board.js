@@ -68,7 +68,12 @@ class Board extends React.Component {
           </div>
         )}
         <div className="right">
-          <h5>The current guesser is: {this.state.names[this.props.ctx.currentPlayer]}</h5>
+          <h5>Your name: {this.state.names[this.props.playerID]}</h5>
+          {this.props.ctx.currentPlayer !== this.props.playerID ? (
+            <h5>The current guesser is: {this.state.names[this.props.ctx.currentPlayer]}</h5>
+          ) : (
+            ''
+          )}
           {/* <h3>Room: {this.props.gameID}</h3> */}
           <Table size="sm">
             <thead>
