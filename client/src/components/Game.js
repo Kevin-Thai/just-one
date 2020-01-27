@@ -63,8 +63,7 @@ const JustOne = {
         moveLimit: 1,
       },
       results: {
-        moves: { endTurn },
-        moveLimit: 1,
+        moves: { endTurn, chatSubmit },
       },
     },
     onEnd: (G, ctx) => {

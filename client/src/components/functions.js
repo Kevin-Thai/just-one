@@ -61,5 +61,8 @@ export function validateClue(G, ctx, votesArr) {
   })
   ctx.events.setStage('waiting')
   if (Object.values(ctx.activePlayers).filter(stage => stage === 'validate').length === 1)
-    ctx.events.setActivePlayers({ currentPlayer: { stage: 'guess', moveLimit: 1 } })
+    ctx.events.setActivePlayers({
+      currentPlayer: { stage: 'guess', moveLimit: 1 },
+      others: { stage: 'waiting' },
+    })
 }

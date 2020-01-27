@@ -3,7 +3,10 @@ import { ListGroupItem, ListGroup } from 'reactstrap'
 
 export default props => {
   useEffect(() => {
-    if (props.guesser && props.G.result) setTimeout(() => props.events.endTurn(), 6500)
+    props.events.setActivePlayers({
+      all: { stage: 'waiting' },
+    })
+    if (props.guesser && props.G.result) setTimeout(() => props.events.endTurn(), 7000)
   }, [])
   const switcher = () => {
     switch (props.G.result) {
