@@ -65,8 +65,8 @@
 .board {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 0px 25px;
+  justify-content: space-evenly;
+  padding: 0px 10px;
 }
 
 .guess {
@@ -80,11 +80,11 @@
 }
 
 .left {
-  width: 75vw;
+  width: 70vw;
 }
 
 .right {
-  width: 18vw;
+  width: 28vw;
   padding-left: 15px;
 }
 
@@ -108,4 +108,12 @@
 .header {
   /* height: 6.9vh; */
   padding: 5px 15px;
+}
+
+.chat {
+  display: flex;
+  height: 40vh;
+  border: 1px solid blue;
+  flex-direction: column;
+  justify-content: space-between;
 }

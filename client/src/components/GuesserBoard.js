@@ -5,18 +5,15 @@ import Results from './Results'
 
 class GuesserBoard extends React.Component {
   render() {
-    const stage = this.props.ctx.activePlayers
-      ? this.props.ctx.activePlayers[this.props.playerID]
-      : ''
     return this.props.G.result ? (
       <Results {...this.props} guesser={true} />
     ) : (
       <div>
         <h1>You are the guesser!</h1>
-        {stage === 'guess' ? (
+        {this.props.stage === 'guess' ? (
           <div className="guess">
             <div className="guess-form">
-              <h2>{this.props.G.stage[stage]}</h2>
+              <h2>{this.props.G.stage[this.props.stage]}</h2>
               <GuessForm {...this.props} playerID={this.props.playerID} />
               <br />
               <hr />

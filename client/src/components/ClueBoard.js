@@ -6,14 +6,11 @@ import Results from './Results'
 
 class ClueBoard extends React.Component {
   render() {
-    const stage = this.props.ctx.activePlayers
-      ? this.props.ctx.activePlayers[this.props.playerID]
-      : ''
     return this.props.G.result ? (
       <Results {...this.props} playerID={this.props.playerID} />
     ) : (
       <div>
-        <h2>{stage ? this.props.G.stage[stage] : 'Waiting...'}</h2>
+        <h2>{this.props.stage ? this.props.G.stage[this.props.stage] : 'Waiting...'}</h2>
         <div>
           {this.props.G.currentWord ? (
             <h3>
@@ -23,9 +20,9 @@ class ClueBoard extends React.Component {
             ''
           )}
         </div>
-        {stage === 'clue' ? <ClueForm {...this.props} /> : ''}
-        {stage === 'validate' ? <ValidationForm {...this.props} /> : ''}
-        {stage !== 'clue' && stage !== 'validate' ? (
+        {this.props.stage === 'clue' ? <ClueForm {...this.props} /> : ''}
+        {this.props.stage === 'validate' ? <ValidationForm {...this.props} /> : ''}
+        {this.props.stage !== 'clue' && this.props.stage !== 'validate' ? (
           <h4>
             <Spinner color="primary" /> Waiting for other players to finish...
           </h4>
