@@ -55,6 +55,9 @@ const JustOne = {
         // moveLimit: 1,
         next: { currentPlayer: 'guess' },
       },
+      waiting: {
+        moves: { chatSubmit },
+      },
       guess: {
         moves: { submitGuess, skipTurn },
         moveLimit: 1,

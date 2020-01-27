@@ -26,7 +26,7 @@ const ValidationForm = props => {
                 value={1}
                 name={clue}
                 id={`approve${i}`}
-                // checked={votes[clue] === 1}
+                // checked={props.G.clues[clue] > -50}
                 onChange={() => handleVoteChange(clue, 1)}
                 disabled={props.G.clues[clue] < -50}
                 inline
@@ -37,7 +37,7 @@ const ValidationForm = props => {
                 value={-1}
                 name={clue}
                 id={`reject${i}`}
-                // checked={votes[clue] === -100}
+                // checked={props.G.clues[clue] < -50}
                 onChange={() => handleVoteChange(clue, -1)}
                 inline
                 label="Reject"

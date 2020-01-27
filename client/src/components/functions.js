@@ -59,7 +59,7 @@ export function validateClue(G, ctx, votesArr) {
   Object.keys(G.clues).forEach(clue => {
     G.clues[clue] += votesArr[clue]
   })
-  ctx.events.endStage()
-  if (Object.keys(ctx.activePlayers).length === 1)
+  ctx.events.setStage('waiting')
+  if (Object.values(ctx.activePlayers).filter(stage => stage === 'validate').length === 1)
     ctx.events.setActivePlayers({ currentPlayer: { stage: 'guess', moveLimit: 1 } })
 }

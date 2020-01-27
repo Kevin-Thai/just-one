@@ -154,10 +154,15 @@ class Lobby extends React.Component {
                   <tr key={i}>
                     <td>{this.state.names[i]}</td>
                     <td>
+                      {/* Temporary for Fullstack play */}
                       <a
+                        href={`${window.location.protocol}//172.17.20.132:3000/${this.state.gameID}/${i}/${this.state.secret[i]}`}>
+                        http://172.17.20.132:3000/{this.state.gameID}/{i}/{this.state.secret[i]}
+                      </a>
+                      {/* <a
                         href={`${window.location.origin}/${this.state.gameID}/${i}/${this.state.secret[i]}`}>
                         {window.location.origin}/{this.state.gameID}/{i}/{this.state.secret[i]}
-                      </a>
+                      </a> */}
                     </td>
                   </tr>
                 ))}
