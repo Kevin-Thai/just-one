@@ -68,7 +68,7 @@ const JustOne = {
       },
     },
     onEnd: (G, ctx) => {
-      return { ...G, clues: {}, currentWord: null, result: null, guess: null, chat: [] }
+      return { ...G, clues: {}, currentWord: null, result: null, guess: null }
     },
   },
 

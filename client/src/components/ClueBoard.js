@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner } from 'reactstrap'
+import { Spinner, ListGroup, ListGroupItem } from 'reactstrap'
 import ValidationForm from './ValidationForm'
 import ClueForm from './ClueForm'
 import Results from './Results'
@@ -22,10 +22,34 @@ class ClueBoard extends React.Component {
         </div>
         {this.props.stage === 'clue' ? <ClueForm {...this.props} /> : ''}
         {this.props.stage === 'validate' ? <ValidationForm {...this.props} /> : ''}
-        {this.props.stage !== 'clue' && this.props.stage !== 'validate' ? (
+        {this.props.stage !== 'clue' &&
+        this.props.stage !== 'validate' &&
+        !Object.values(this.props.ctx.activePlayers).includes('guess') ? (
           <h4>
-            <Spinner color="primary" /> Waiting for other players to finish...
+            <Spinner color="primary" /> Waiting for the other clue givers...
           </h4>
+        ) : (
+          ''
+        )}
+        {Object.values(this.props.ctx.activePlayers).includes('guess') ? (
+          <div>
+            <h4>
+              <Spinner color="primary" /> Validations submitted! Waiting for the guesser...
+            </h4>
+            <hr />
+            <h4>The valid clues are:</h4>
+            <ListGroup flush>
+              {Object.keys(this.props.G.clues).map((clue, i) =>
+                this.props.G.clues[clue] > 0 ? (
+                  <ListGroupItem key={i} className="emphasis">
+                    {clue}
+                  </ListGroupItem>
+                ) : (
+                  ''
+                )
+              )}
+            </ListGroup>
+          </div>
         ) : (
           ''
         )}
