@@ -7,7 +7,7 @@ import ClueBoard from './ClueBoard'
 import GameOver from './GameOver'
 import Chat from './Chat'
 
-const API_PORT = 8001
+import { API_PORT } from '../../../server'
 
 class Board extends React.Component {
   static propTypes = {
