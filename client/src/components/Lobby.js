@@ -136,7 +136,7 @@ class Lobby extends React.Component {
               color="warning"
               disabled={!this.isFormValid()}
               onClick={this.createGame}>
-              Submit
+              New Game
             </Button>
           </Form>
         </div>

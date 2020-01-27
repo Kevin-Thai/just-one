@@ -8,6 +8,7 @@ import {
   stages,
   skipTurn,
   endTurn,
+  chatSubmit,
 } from './functions'
 
 const JustOne = {
@@ -22,6 +23,7 @@ const JustOne = {
     clues: {},
     guess: null,
     result: null,
+    chat: [],
   }),
 
   playerView: PlayerView.STRIP_SECRETS,
@@ -32,6 +34,7 @@ const JustOne = {
     validateClue,
     skipTurn,
     endTurn,
+    chatSubmit,
   },
 
   turn: {
@@ -39,17 +42,17 @@ const JustOne = {
       return { ...G, currentWord: G.words[ctx.turn] }
     },
     activePlayers: {
-      others: { stage: 'clue', moveLimit: 1 },
+      others: { stage: 'clue' },
     },
     stages: {
       clue: {
-        moves: { submitClue },
-        moveLimit: 1,
+        moves: { submitClue, chatSubmit },
+        // moveLimit: 1,
         next: { others: 'validate' },
       },
       validate: {
-        moves: { validateClue },
-        moveLimit: 1,
+        moves: { validateClue, chatSubmit },
+        // moveLimit: 1,
         next: { currentPlayer: 'guess' },
       },
       guess: {
@@ -62,7 +65,7 @@ const JustOne = {
       },
     },
     onEnd: (G, ctx) => {
-      return { ...G, clues: {}, currentWord: null, result: null, guess: null }
+      return { ...G, clues: {}, currentWord: null, result: null, guess: null, chat: [] }
     },
   },
 

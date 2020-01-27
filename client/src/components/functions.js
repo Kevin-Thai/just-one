@@ -4,6 +4,10 @@ export const stages = {
   guess: 'What is the mystery word?',
 }
 
+export function chatSubmit(G, ctx, msg) {
+  G.chat.push(msg)
+}
+
 export function endTurn(G, ctx) {
   ctx.events.endTurn()
 }
@@ -32,8 +36,9 @@ export function submitClue(G, ctx, clue) {
   clue = String(clue).toUpperCase()
   if (G.clues[clue]) G.clues[clue] = -100
   else G.clues[clue] = 1
+  ctx.events.endStage()
   if (Object.keys(ctx.activePlayers).length === 1)
-    ctx.events.setActivePlayers({ others: 'validate', moveLimit: 1 })
+    ctx.events.setActivePlayers({ others: 'validate' })
 }
 export function submitGuess(G, ctx, guess) {
   guess = String(guess).toUpperCase()
@@ -54,6 +59,7 @@ export function validateClue(G, ctx, votesArr) {
   Object.keys(G.clues).forEach(clue => {
     G.clues[clue] += votesArr[clue]
   })
+  ctx.events.endStage()
   if (Object.keys(ctx.activePlayers).length === 1)
     ctx.events.setActivePlayers({ currentPlayer: { stage: 'guess', moveLimit: 1 } })
 }
