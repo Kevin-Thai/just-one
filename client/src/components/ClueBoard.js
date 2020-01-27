@@ -38,7 +38,7 @@ class ClueBoard extends React.Component {
             </h4>
             <hr />
             <h4>The valid clues are:</h4>
-            <ListGroup flush>
+            <ListGroup>
               {Object.keys(this.props.G.clues).map((clue, i) =>
                 this.props.G.clues[clue] > 0 ? (
                   <ListGroupItem key={i} className="emphasis">

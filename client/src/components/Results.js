@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { ListGroupItem, ListGroup } from 'reactstrap'
 
 export default props => {
   useEffect(() => {
@@ -28,9 +29,23 @@ export default props => {
     <div>
       <h1>The results are in!</h1>
       {switcher()}
+      <hr />
       <h4>
         <span className="emphasis">{props.G.currentWord}</span> was the mystery word.
       </h4>
+      <hr />
+      <h4>These were the available clues:</h4>
+      <ListGroup>
+        {Object.keys(props.G.clues).map((clue, i) =>
+          props.G.clues[clue] > 0 ? (
+            <ListGroupItem key={i} className="emphasis">
+              {clue}
+            </ListGroupItem>
+          ) : (
+            ''
+          )
+        )}
+      </ListGroup>
     </div>
   )
 }
