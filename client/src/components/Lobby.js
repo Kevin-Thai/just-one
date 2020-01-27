@@ -12,7 +12,7 @@ import {
   Table,
 } from 'reactstrap'
 
-import { API_PORT } from '../../../server'
+const API_PORT = 8001
 
 class Lobby extends React.Component {
   constructor(props) {

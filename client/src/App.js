@@ -2,20 +2,25 @@ import React, { useState } from 'react'
 import { CardBody } from 'reactstrap'
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { Client } from 'boardgame.io/react'
-// import { Lobby } from 'boardgame.io/react'
-
 import JustOne from './components/Game'
 import Board from './components/Board'
-// import GameInfoForm from './components/GameInfoForm'
 import './App.css'
-import { PORT } from '../../server'
+const PORT = 8000
+
+const url =
+  window.location.protocol +
+  '//' +
+  window.location.hostname +
+  (window.location.port ? ':' + window.location.port : '')
 
 const GameClient = Client({
   game: JustOne,
   board: Board,
   debug: false,
-  multiplayer: SocketIO({ server: `${window.location.hostname}:${PORT}` }),
-  // multiplayer: SocketIO({ server: `https://just-one-game.herokuapp.com/` }),
+  multiplayer: SocketIO({
+    server:
+      process.env.NODE_ENV === 'production' ? `${url}` : `${window.location.hostname}:${PORT}`,
+  }),
 })
 
 const App = props => {
