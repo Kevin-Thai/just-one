@@ -117,3 +117,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.chat-container {
+  overflow-y: auto;
+}
