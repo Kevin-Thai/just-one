@@ -7,7 +7,7 @@ export default props => {
       all: { stage: 'waiting' },
     })
     if (props.guesser && props.G.result) setTimeout(() => props.events.endTurn(), 7000)
-  }, [])
+  }, [props.guesser, props.G.result, props.events])
   const switcher = () => {
     switch (props.G.result) {
       case 'correct':

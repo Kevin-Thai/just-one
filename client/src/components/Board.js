@@ -43,7 +43,6 @@ class Board extends React.Component {
     g.body.players.forEach(player => {
       if (typeof player.name !== 'undefined') this.updateName(player.id, player.name)
     })
-    console.log(this.state.names, 'g')
   }
 
   componentDidMount() {
