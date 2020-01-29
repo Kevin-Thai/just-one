@@ -19,29 +19,12 @@ export default props => {
   }
 
   return (
-    // <Table>
-    //   <tbody>
-    //     <tr>
-    //       {Object.keys(props.names).map(nameId => (
-    //         <td key={'name-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
-    //           {props.names[nameId] + (currentPlayer(nameId) ? ' (You)' : '')}
-    //         </td>
-    //       ))}
-    //     </tr>
-    //     <tr>
-    //       {Object.keys(props.names).map(nameId => (
-    //         <td key={'stage-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
-    //           {getStage(nameId)}
-    //         </td>
-    //       ))}
-    //     </tr>
-    //   </tbody>
-    // </Table>
     <Container fluid={true}>
       <Row>
         {Object.keys(props.names).map(nameId => (
           <Col key={'name-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
-            {props.names[nameId] + (currentPlayer(nameId) ? ' (You)' : '')}
+            {/* {props.names[nameId] + (currentPlayer(nameId) ? ' (You)' : '')} */}
+            {props.names[nameId]}
           </Col>
         ))}
       </Row>

@@ -70,7 +70,7 @@ class Board extends React.Component {
               )}
             </Col>
             <Col className="right col-3">
-              <Table size="sm">
+              <Table size="sm" className="centered">
                 <thead>
                   <tr>
                     <th className="emphasis">Score: {this.props.G.score}/13</th>
@@ -79,7 +79,7 @@ class Board extends React.Component {
                 <tbody>
                   {this.props.G.words.map((word, i) => (
                     <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
-                      <td className="centered">
+                      <td>
                         {this.props.G.guesses[word] && this.props.G.guesses[word] !== 'deleted'
                           ? word
                           : '???'}
