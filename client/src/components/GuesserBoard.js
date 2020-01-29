@@ -44,9 +44,26 @@ class GuesserBoard extends React.Component {
             </div>
           </div>
         ) : (
+          // <h2 className="hidden">
+          //   <Spinner color="primary" /> Waiting for your clues...
+          // </h2>
+          ''
+        )}
+        {Object.values(this.props.ctx.activePlayers).includes('clue') ? (
           <h2 className="hidden">
-            <Spinner color="primary" /> Waiting for your clues...
+            <Spinner color="primary" />
+            Players are submitting their clues...
           </h2>
+        ) : (
+          ''
+        )}
+        {Object.values(this.props.ctx.activePlayers).includes('validate') ? (
+          <h2 className="hidden">
+            <Spinner color="warning" />
+            Players are now validating the clues...
+          </h2>
+        ) : (
+          ''
         )}
       </div>
     )
