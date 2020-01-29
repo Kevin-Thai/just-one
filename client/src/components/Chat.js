@@ -22,7 +22,7 @@ const Chat = props => {
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
   }
 
-  useEffect(scrollToBottom, [props.G.chat])
+  // useEffect(scrollToBottom, [props.G.chat])
 
   return (
     <div className="chat">
