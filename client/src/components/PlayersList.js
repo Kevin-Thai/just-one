@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 export default props => {
   const getStage = id => {
@@ -10,24 +10,48 @@ export default props => {
       case 'validate':
         return 'Validating clues'
       default:
-        return 'Now waiting...'
+        return 'Waiting...'
     }
   }
 
+  const currentPlayer = id => {
+    return props.playerID === id
+  }
+
   return (
-    <Table>
-      <tbody>
+    // <Table>
+    //   <tbody>
+    //     <tr>
+    //       {Object.keys(props.names).map(nameId => (
+    //         <td key={'name-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
+    //           {props.names[nameId] + (currentPlayer(nameId) ? ' (You)' : '')}
+    //         </td>
+    //       ))}
+    //     </tr>
+    //     <tr>
+    //       {Object.keys(props.names).map(nameId => (
+    //         <td key={'stage-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
+    //           {getStage(nameId)}
+    //         </td>
+    //       ))}
+    //     </tr>
+    //   </tbody>
+    // </Table>
+    <Container fluid={true}>
+      <Row>
         {Object.keys(props.names).map(nameId => (
-          <tr key={nameId}>
-            <td className={props.playerID === nameId ? 'current-player' : ''}>
-              {props.names[nameId]}
-            </td>
-            <td className={props.playerID === nameId ? 'current-player' : ''}>
-              {getStage(nameId)}
-            </td>
-          </tr>
+          <Col key={'name-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
+            {props.names[nameId] + (currentPlayer(nameId) ? ' (You)' : '')}
+          </Col>
         ))}
-      </tbody>
-    </Table>
+      </Row>
+      <Row>
+        {Object.keys(props.names).map(nameId => (
+          <Col key={'stage-' + nameId} className={currentPlayer(nameId) ? 'current-player' : ''}>
+            {getStage(nameId)}
+          </Col>
+        ))}
+      </Row>
+    </Container>
   )
 }

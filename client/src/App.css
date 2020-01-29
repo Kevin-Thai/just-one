@@ -131,3 +131,7 @@ p {
   color: green;
   font-size: 1.05em;
 }
+
+div.col {
+  text-align: center;
+}
