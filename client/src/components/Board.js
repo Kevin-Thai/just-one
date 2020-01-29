@@ -6,6 +6,7 @@ import GuesserBoard from './GuesserBoard'
 import ClueBoard from './ClueBoard'
 import GameOver from './GameOver'
 import Chat from './Chat'
+import PlayersList from './PlayersList'
 
 const API_PORT = 8001
 
@@ -60,19 +61,20 @@ class Board extends React.Component {
         ) : (
           <div className="left">
             {this.props.playerID === this.props.ctx.currentPlayer ? (
-              <GuesserBoard {...this.props} stage={stage} />
+              <GuesserBoard {...this.props} stage={stage} names={this.state.names} />
             ) : (
-              <ClueBoard {...this.props} stage={stage} />
+              <ClueBoard {...this.props} stage={stage} names={this.state.names} />
             )}
           </div>
         )}
         <div className="right">
-          <h5>Your name: {this.state.names[this.props.playerID]}</h5>
-          {this.props.ctx.currentPlayer !== this.props.playerID ? (
+          {/* <h5>Your name: {this.state.names[this.props.playerID]}</h5> */}
+          <PlayersList {...this.props} names={this.state.names} />
+          {/* {this.props.ctx.currentPlayer !== this.props.playerID ? (
             <h5>The current guesser is: {this.state.names[this.props.ctx.currentPlayer]}</h5>
           ) : (
             ''
-          )}
+          )} */}
           {/* <h3>Room: {this.props.gameID}</h3> */}
           <Table size="sm">
             <thead>
@@ -83,7 +85,11 @@ class Board extends React.Component {
             <tbody>
               {this.props.G.words.map((word, i) => (
                 <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
-                  <td className="centered">{this.props.G.guesses[word] ? word : '???'}</td>
+                  <td className="centered">
+                    {this.props.G.guesses[word] && this.props.G.guesses[word] !== 'deleted'
+                      ? word
+                      : '???'}
+                  </td>
                 </tr>
               ))}
             </tbody>

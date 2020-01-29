@@ -125,3 +125,9 @@
 p {
   margin: 0px;
 }
+
+.current-player {
+  font-weight: bolder;
+  color: green;
+  font-size: 1.05em;
+}
