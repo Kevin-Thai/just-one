@@ -121,3 +121,7 @@
 .chat-container {
   overflow-y: auto;
 }
+
+p {
+  margin: 0px;
+}
