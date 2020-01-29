@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Spinner, ListGroup, ListGroupItem } from 'reactstrap'
 import ValidationForm from './ValidationForm'
 import ClueForm from './ClueForm'
 import Results from './Results'
+import Rules from './Rules'
 
 const ClueBoard = props => {
   return props.G.result ? (
     <Results {...props} playerID={props.playerID} />
   ) : (
-    <div>
+    <Fragment>
       <h2>{props.stage ? props.G.stage[props.stage] : 'Waiting...'}</h2>
       <div>
         {props.G.currentWord ? (
@@ -21,6 +22,11 @@ const ClueBoard = props => {
       </div>
       {props.stage === 'clue' ? <ClueForm {...props} /> : ''}
       {props.stage === 'validate' ? <ValidationForm {...props} /> : ''}
+      {props.stage === 'clue' || props.stage === 'validate' ? (
+        <Rules stage={props.stage === 'validate' ? 'validate' : ''} />
+      ) : (
+        ''
+      )}
       {props.stage !== 'clue' &&
       props.stage !== 'validate' &&
       !Object.values(props.ctx.activePlayers).includes('guess') ? (
@@ -52,7 +58,7 @@ const ClueBoard = props => {
       ) : (
         ''
       )}
-    </div>
+    </Fragment>
   )
 }
 

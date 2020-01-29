@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CustomInput, Label, Button, Form, FormGroup } from 'reactstrap'
-import Rules from './Rules'
 
 const ValidationForm = props => {
   const [votes, setVotes] = useState({})
@@ -15,7 +14,7 @@ const ValidationForm = props => {
     setVotes({})
   }
   return (
-    <div>
+    <div className="flex-form">
       <Form>
         {Object.keys(props.G.clues).map((clue, i) => (
           <FormGroup key={i}>
@@ -56,7 +55,6 @@ const ValidationForm = props => {
         </Button>
       </Form>
       <hr />
-      <Rules stage="validate" />
     </div>
   )
 }

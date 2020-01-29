@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import request from 'superagent'
-import { Table } from 'reactstrap'
+import { Table, Container, Col, Row } from 'reactstrap'
 import PropTypes from 'prop-types'
 import GuesserBoard from './GuesserBoard'
 import ClueBoard from './ClueBoard'
@@ -57,46 +57,46 @@ class Board extends React.Component {
     return (
       <Fragment>
         <PlayersList {...this.props} names={this.state.names} />
-        <br />
-        <div className="board">
-          {this.props.ctx.gameover ? (
-            <GameOver {...this.props} />
-          ) : (
-            <div className="left">
-              {this.props.playerID === this.props.ctx.currentPlayer ? (
+        <hr />
+        <Container className="board">
+          <Row xs="1" md="10">
+            <Col className="left col-9">
+              {this.props.ctx.gameover ? (
+                <GameOver {...this.props} />
+              ) : this.props.playerID === this.props.ctx.currentPlayer ? (
                 <GuesserBoard {...this.props} stage={stage} names={this.state.names} />
               ) : (
                 <ClueBoard {...this.props} stage={stage} names={this.state.names} />
               )}
-            </div>
-          )}
-          <div className="right">
-            <Table size="sm">
-              <thead>
-                <tr>
-                  <th className="emphasis">Score: {this.props.G.score}/13</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.G.words.map((word, i) => (
-                  <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
-                    <td className="centered">
-                      {this.props.G.guesses[word] && this.props.G.guesses[word] !== 'deleted'
-                        ? word
-                        : '???'}
-                    </td>
+            </Col>
+            <Col className="right col-3">
+              <Table size="sm">
+                <thead>
+                  <tr>
+                    <th className="emphasis">Score: {this.props.G.score}/13</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-            {/* {stage === 'validate' || stage === 'waiting' ? ( */}
-            {this.props.playerID !== this.props.ctx.currentPlayer ? (
-              <Chat {...this.props} name={this.state.names[this.props.playerID]} stage={stage} />
-            ) : (
-              ''
-            )}
-          </div>
-        </div>
+                </thead>
+                <tbody>
+                  {this.props.G.words.map((word, i) => (
+                    <tr className={this.props.G.guesses[word] || 'hidden'} key={i}>
+                      <td className="centered">
+                        {this.props.G.guesses[word] && this.props.G.guesses[word] !== 'deleted'
+                          ? word
+                          : '???'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              {/* {stage === 'validate' || stage === 'waiting' ? ( */}
+              {this.props.playerID !== this.props.ctx.currentPlayer ? (
+                <Chat {...this.props} name={this.state.names[this.props.playerID]} stage={stage} />
+              ) : (
+                ''
+              )}
+            </Col>
+          </Row>
+        </Container>
       </Fragment>
     )
   }

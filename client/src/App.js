@@ -30,11 +30,9 @@ const App = props => {
   const [secret] = useState(params.secret)
 
   return (
-    <div>
-      <CardBody>
-        <GameClient gameID={gameID} credentials={secret} playerID={playerID + ''} />
-      </CardBody>
-    </div>
+    <CardBody className="content">
+      <GameClient gameID={gameID} credentials={secret} playerID={playerID + ''} />
+    </CardBody>
   )
 }
 

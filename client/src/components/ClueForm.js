@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'reactstrap'
-import Rules from './Rules'
 
 const ClueForm = props => {
   const [clue, setClue] = useState('')
@@ -16,31 +15,27 @@ const ClueForm = props => {
   }
 
   return (
-    <div>
+    <div className="flex-form">
       <Form inline onSubmit={handleClueSubmit}>
-        <div>
-          <Input
-            type="text"
-            name="clue"
-            value={clue}
-            onChange={handleChange}
-            required
-            maxLength="20"
-            autoComplete="off"
-          />
-          <Button
-            // onClick={() => handleClueSubmit()}
-            color="success"
-            disabled={props.G.currentWord.includes(clue) || clue.includes(props.G.currentWord)}
-            // hidden={!clue || !this.props.isActive}
-          >
-            Submit your clue
-          </Button>
-        </div>
+        <Input
+          type="text"
+          name="clue"
+          value={clue}
+          onChange={handleChange}
+          required
+          maxLength="20"
+          autoComplete="off"
+        />
+        <Button
+          // onClick={() => handleClueSubmit()}
+          color="success"
+          disabled={props.G.currentWord.includes(clue) || clue.includes(props.G.currentWord)}
+          // hidden={!clue || !this.props.isActive}
+        >
+          Submit your clue
+        </Button>
       </Form>
-      <br />
       <hr />
-      <Rules />
     </div>
   )
 }

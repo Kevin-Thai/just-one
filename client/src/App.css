@@ -37,6 +37,11 @@
   }
 }
 
+.content {
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
 .emphasis {
   color: blue;
   font-weight: bold;
@@ -80,6 +85,8 @@
 }
 
 .left {
+  display: flex;
+  flex-direction: column;
   width: 70vw;
 }
 
@@ -102,7 +109,7 @@
 }
 
 .logo {
-  height: 80px;
+  height: 75px;
 }
 
 .header {
@@ -132,6 +139,19 @@ p {
   font-size: 1.05em;
 }
 
-div.col {
+.container {
+  margin: 0px;
+  max-width: 100%;
+}
+
+.container-fluid {
   text-align: center;
+}
+
+.flex-form {
+}
+
+.rules {
+  overflow-y: auto;
+  flex: 1 1 auto;
 }
